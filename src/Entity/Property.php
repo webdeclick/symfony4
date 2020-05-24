@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\PropertyRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
@@ -76,7 +75,7 @@ class Property
     /**
      * @ORM\Column(type="boolean", options={"default":false})
      */
-    private $sold;
+    private $sold=false;
 
     /**
      * @ORM\Column(type="datetime")
@@ -89,7 +88,7 @@ class Property
     private $bedrooms;
 
     public function __construct()    {
-        $this->created_at = new DateTime();
+        $this->created_at = new \DateTime();
     }
     
     public function getId(): ?int
