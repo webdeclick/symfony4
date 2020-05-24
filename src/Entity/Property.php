@@ -4,12 +4,18 @@ namespace App\Entity;
 
 use App\Repository\PropertyRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
  */
 class Property
 {
+    const HEAT = [
+        0=>'electric',
+        1=>'gaz'
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -77,6 +83,15 @@ class Property
      */
     private $created_at;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $bedrooms;
+
+    public function __construct()    {
+        $this->created_at = new DateTime();
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -222,6 +237,18 @@ class Property
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getBedrooms(): ?int
+    {
+        return $this->bedrooms;
+    }
+
+    public function setBedrooms(int $bedrooms): self
+    {
+        $this->bedrooms = $bedrooms;
 
         return $this;
     }
