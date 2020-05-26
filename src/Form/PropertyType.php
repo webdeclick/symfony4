@@ -19,9 +19,7 @@ class PropertyType extends AbstractType
             ->add('floor')
             ->add('price')
             ->add('heat')
-            ->add('city', null, [
-                'label' => 'Ville'
-            ])
+            ->add('city')
             ->add('address')
             ->add('postal_code')
             ->add('sold')
@@ -33,6 +31,7 @@ class PropertyType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Property::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }
